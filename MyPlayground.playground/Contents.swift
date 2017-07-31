@@ -56,12 +56,55 @@ enum Suit{
             return "clubs"
         }
     }
+    
+    func Colors() -> String {
+        switch self {
+        case .spades:
+            return "black"
+        case .clubs:
+            return "black"
+        case .hearts:
+            return "red"
+        default:
+            return "no color"
+        }
+    }
 }
 
 let hearts = Suit.hearts
 let heartsDescription = hearts.simpleDescription()
+let heartsColor = hearts.Colors()
 
 
+enum ServerResponse{
+    
+    case result(String,String)
+    case failure(String)
+    
+}
+
+let success = ServerResponse.result("6:00am", "8:00pm")
+let failure = ServerResponse.failure("Out of Cheese")
+
+switch success {
+case let .result(sunrise,sunset) :
+    print("\(sunrise) - \(sunset)")
+case let .failure(message):
+    print("\(message)")
+}
+
+struct Card{
+    
+    var rank:Rank
+    var suit:Suit
+    
+    func simpleDescription() -> String {
+        return " \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+}
+
+let threeOfSpades = Card(rank: .three, suit: .spades)
+let threeOfSpadesDesc = threeOfSpades.simpleDescription()
 
 
 
